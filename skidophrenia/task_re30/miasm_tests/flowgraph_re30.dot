@@ -1,0 +1,31 @@
+digraph asm_graph {
+8791144975809 [
+shape="Mrecord" fontname="Courier New"label =<<table border="0" cellborder="0" cellpadding="3"><tr><td colspan="2" align="center" bgcolor="grey">loc_0000000000400658</td></tr><tr><td align="left">MOV        EDI, 0x4007F9</td></tr><tr><td align="left">CALL       loc_00000000004004E0:0x004004e0</td></tr></table>> ];
+8791144951365 [
+shape="Mrecord" fontname="Courier New"label =<<table border="0" cellborder="0" cellpadding="3"><tr><td colspan="2" align="center" bgcolor="grey">loc_000000000040064A</td></tr><tr><td align="left">MOV        EDI, 0x4007F6</td></tr><tr><td align="left">CALL       loc_00000000004004E0:0x004004e0</td></tr></table>> ];
+8791144975841 [
+shape="Mrecord" fontname="Courier New"label =<<table border="0" cellborder="0" cellpadding="3"><tr><td colspan="2" align="center" bgcolor="grey">loc_0000000000400629</td></tr><tr><td align="left">MOV        ECX, 0x400808</td></tr><tr><td align="left">XOR        EAX, EAX</td></tr></table>> ];
+8791144975757 [
+shape="Mrecord" fontname="Courier New"label =<<table border="0" cellborder="0" cellpadding="3"><tr><td colspan="2" align="center" bgcolor="grey">loc_0000000000400614</td></tr><tr><td align="left">MOV        RDX, QWORD PTR [RSI+0x8]</td></tr><tr><td align="left">XOR        EAX, EAX</td></tr><tr><td align="left">OR         RCX, 0xFFFFFFFFFFFFFFFF</td></tr><tr><td align="left">MOV        RDI, RDX</td></tr><tr><td align="left">REPNE SCASB      </td></tr><tr><td align="left">CMP        RCX, 0xFFFFFFFFFFFFFFF6</td></tr><tr><td align="left">JNZ        loc_0000000000400658:0x00400658</td></tr></table>> ];
+8791144951421 [
+shape="Mrecord" fontname="Courier New"label =<<table border="0" cellborder="0" cellpadding="3"><tr><td colspan="2" align="center" bgcolor="grey">loc_0000000000400667</td></tr><tr><td align="left">POP        RDX</td></tr><tr><td align="left">RET        </td></tr></table>> ];
+8791144951317 [
+shape="Mrecord" fontname="Courier New"label =<<table border="0" cellborder="0" cellpadding="3"><tr><td colspan="2" align="center" bgcolor="grey">loc_0000000000400662</td></tr><tr><td align="left">MOV        EAX, 0x1</td></tr></table>> ];
+8791144951321 [
+shape="Mrecord" fontname="Courier New"label =<<table border="0" cellborder="0" cellpadding="3"><tr><td colspan="2" align="center" bgcolor="grey">loc_000000000040063C</td></tr><tr><td align="left">ADD        EAX, 0xA</td></tr><tr><td align="left">INC        RDX</td></tr><tr><td align="left">INC        RCX</td></tr><tr><td align="left">CMP        EAX, 0x50</td></tr><tr><td align="left">JNZ        loc_0000000000400630:0x00400630</td></tr></table>> ];
+8791144951389 [
+shape="Mrecord" fontname="Courier New"label =<<table border="0" cellborder="0" cellpadding="3"><tr><td colspan="2" align="center" bgcolor="grey">loc_0000000000400654</td></tr><tr><td align="left">XOR        EAX, EAX</td></tr><tr><td align="left">JMP        loc_0000000000400667:0x00400667</td></tr></table>> ];
+8791144951413 [
+shape="Mrecord" fontname="Courier New"label =<<table border="0" cellborder="0" cellpadding="3"><tr><td colspan="2" align="center" bgcolor="grey">loc_0000000000400630</td></tr><tr><td align="left">MOVSX      ESI, BYTE PTR [RDX]</td></tr><tr><td align="left">MOVSX      EDI, BYTE PTR [RCX]</td></tr><tr><td align="left">XOR        ESI, EAX</td></tr><tr><td align="left">CMP        ESI, EDI</td></tr><tr><td align="left">JNZ        loc_0000000000400658:0x00400658</td></tr></table>> ];
+8791144975757 -> 8791144975809[color="limegreen"];
+8791144975757 -> 8791144975841[color="red"];
+8791144975809 -> 8791144951317[color="blue"];
+8791144951321 -> 8791144951365[color="red"];
+8791144951365 -> 8791144951389[color="blue"];
+8791144951321 -> 8791144951413[color="limegreen"];
+8791144951413 -> 8791144975809[color="limegreen"];
+8791144951413 -> 8791144951321[color="red"];
+8791144951389 -> 8791144951421[color="blue"];
+8791144975841 -> 8791144951413[color="blue"];
+8791144951317 -> 8791144951421[color="blue"];
+}
