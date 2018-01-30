@@ -1,1 +1,0 @@
-/usr/local/bin/manticore re30
