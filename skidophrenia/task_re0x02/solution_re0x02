@@ -1,0 +1,2 @@
+- value to compare is copied statically into eax
+- value is: 0x149a => 5274

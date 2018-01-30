@@ -1,0 +1,24 @@
+
+  *finding string for Enter Password
+
+:> / Enter the
+Searching 9 bytes from 0x00400000 to 0x00601078: 45 6e 74 65 72 20 74 68 65 
+Searching 9 bytes in [0x400000-0x601078]
+hits: 1
+0x00400937 hit0_0 .glptLD_PRELOADEnter the password: Nice.
+
+
+
+  *password evalution runs in own function fcn.004006fd that gives back 1 on sucessful processing and 0 on giving false password
+
+ 0x00400790 b801000000     mov eax, 1 
+
+  *password evaluation loop will take eleven times
+
+0x0040079b 837ddc0b       cmp dword [local_24h], 0xb
+
+
+  *it seems that it isn't possible to trace into called functions because of following error on execution:
+WARNING | 2017-09-03 17:39:46,163 | angr.state_plugins.callstack | Merging not implemented for callstacks!
+
+  *so simply decide on blocks where is giving success or unsuccess string in main function will manage it

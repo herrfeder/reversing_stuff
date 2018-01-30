@@ -1,0 +1,133 @@
+  *before every printf, a function will be started
+
+   0x8048470:   push   ebp
+   0x8048471:   mov    ebp,esp
+   0x8048473:   sub    esp,0x10
+   0x8048476:   mov    eax,DWORD PTR [ebp+0x8]
+   0x8048479:   mov    DWORD PTR [ebp-0x8],eax
+   0x804847c:   mov    ecx,eax
+   0x804847e:   sub    ecx,0x14
+   0x8048481:   mov    DWORD PTR [ebp-0xc],ecx
+   0x8048484:   mov    DWORD PTR [ebp-0x10],eax
+   0x8048487:   ja     0x80486bb
+   0x804848d:   mov    eax,DWORD PTR [ebp-0x10]
+   0x8048490:   mov    ecx,DWORD PTR [eax*4+0x8048f50]
+   0x8048497:   jmp    ecx
+
+
+  *jump ecx address on every call of fcn.08048470   
+
+  
+
+
+   0x8048583    movsx  eax, byte ptr [0x804b036]  0x66
+   0x804858a    movsx  ecx, byte ptr [0x804b037]  0x5
+   0x8048591    xor    eax, ecx
+   0x8048593    mov    dl, al
+   0x8048595    mov    byte ptr [ebp - 1], dl  # dl = 0x63
+   0x8048598    jmp    0x80486bf
+    ↓
+   0x80486bf    movsx  eax, byte ptr [ebp - 1]
+   0x80486c3    add    esp, 0x10
+   0x80486c6    pop    ebp
+   0x80486c7    ret    
+
+  *will jump everytime the same address
+
+  *returns to main afterwards
+
+  *on first run
+    eax = 0x9
+    jump ecx : 0x8048583 --> eax = 0x66 f
+    dl = 0x63
+
+  *on second run
+    eax = 0xe
+    jump ecx : 0x8048605 --> eax = 0x6c l
+    dl = 0xdb
+
+  *on third run
+    eax = 0x6
+    jump ecx : 0x8048535  --> eax = 0x61 a
+    dl = 0x7d
+
+  *on fourth run
+    eax = 0x2
+    jump ecx : 0x80484cd  --> eax = 0x67 g
+    dl = 0xdb
+
+  *on fifth run
+    eax = 0x13
+    jump ecx : 0x8048687 --> eax = 0x7b {
+    dl = 0x97
+
+  *on sixth run
+    eax = 0x10
+    jump ecx : 0x8048639 --> eax = 0x73 s
+    dl = 0xea
+
+  *on seventh run
+   eax = 0x12
+   jump ecx : 0x804866d --> eax = 0x77 w
+   dl = 0x4c
+
+  *on eigthth run
+   eax = 0xa
+   jump ecx : 0x804859d --> eax = 0x69 i
+   dl = 0xc9
+
+  *on ninth run
+   eax = 0x11
+   jump ecx : 0x8048653 --> eax = 0x74 t
+   dl = 0x26
+
+  *on tenth run
+   eax = 0x4 
+   jump ecx : 0x8048501 --> eax = 0x63 c
+   dl = 0xe
+
+   eax = 0xb
+   jump ecx : 0x80485b7 --> eax = 0x68 h
+
+   eax = 0x1
+   jump ecx : 0x80484b3 --> eax = 0x20 " "
+
+
+   eax = 0xc
+   jump ecx : 0x80485d1 --> eax = 0x6a j
+
+   eax = 0x5
+   jump ecx : 0x804851b  --> eax = 0x75 u
+
+   eax = 0xd
+   jump ecx : 0x80485eb  --> eax = 0x6d m
+
+   eax = 0x3
+   jump ecx : 0x80484e7 --> eax = 0x70 p
+
+   eax = 0x1
+   jump ecx: 0x80484b3  --> eax = 0x20 " "
+
+   eax = 0x3
+   jump ecx: 0x80484e7  --> eax = 0x70 p
+
+ogo pogo bounce}
+ 
+  *next step should be to automatize this process in angr
+
+
+  *it will load the format identifier every round before printf
+
+ 0x8048792 <main+194>    lea    ecx, [0x8048fa4]
+
+  *we can simply change the identifier to output another format
+   pwndbg> set *0x8048fa4=0xa006425
+
+output:
+i��������iQ
+
+will convert with %x to
+
+63ffffffdb7dffffffdbffffff97ffffffea4cffffffc926e7ffffffb7d69ffffffae1fffffffb71ffffffffcffffffdbfffffffcffffffb71ffffffffcffffffdbfffffffcffffffb7ffffffa6fffffffc6951effffffc946
+
+which doesn't make sense at all, because it isn't the same hexadecimal number
